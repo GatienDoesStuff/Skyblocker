@@ -8,6 +8,7 @@ import de.hysky.skyblocker.SkyblockerMod;
 import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.config.configs.UIAndVisualsConfig;
 import de.hysky.skyblocker.utils.render.RenderHelper;
+import de.hysky.skyblocker.utils.render.HudHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.*;
@@ -138,7 +139,12 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 		int barWith = iconPosition.equals(IconPosition.OFF) ? width : width - 10;
 		int barX = iconPosition.equals(IconPosition.LEFT) ? x + 10 : x;
 		context.drawGuiTexture(RenderLayer::getGuiTextured, BAR_BACK, barX, y + 1, barWith, 7, transparency);
-		drawBarFill(context, barX, barWith);
+		HudHelper.renderNineSliceColored(context, BAR_FILL, barX + 1, y + 2, (int) ((barWith - 2) * fill), 5, transparency(colors[0].getRGB()));
+
+
+		if (hasOverflow && overflowFill > 0) {
+			HudHelper.renderNineSliceColored(context, BAR_FILL, barX + 1, y + 2, (int) ((barWith - 2) * Math.min(overflowFill, 1)), 5, transparency(colors[1].getRGB()));
+		}
 		//context.drawText(MinecraftClient.getInstance().textRenderer, gridX + " " + gridY + " s:" + size , x, y-9, Colors.WHITE, true);
 		if (showText()) {
 			context.getMatrices().push();

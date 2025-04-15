@@ -28,10 +28,11 @@ import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.profiler.Profilers;
+
+import java.awt.Color;
+
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-
-import java.awt.*;
 
 public class RenderHelper {
     private static final Identifier TRANSLUCENT_DRAW = Identifier.of(SkyblockerMod.NAMESPACE, "translucent_draw");
