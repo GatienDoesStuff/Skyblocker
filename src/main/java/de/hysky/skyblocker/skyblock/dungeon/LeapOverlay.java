@@ -117,18 +117,6 @@ public class LeapOverlay extends Screen implements ScreenHandlerListener {
 	}
 
 	@Override
-	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-		super.render(context, mouseX, mouseY, delta);
-
-		if (shouldShowMap()) {
-			int x = (width >> 1) - 64;
-			int y = (height >> 2) - 64;
-			hovered = DungeonMap.render(context, x, y, 1, true, mouseX - x, mouseY - y, hoveredElement(mouseX, mouseY).filter(PlayerButton.class::isInstance).map(PlayerButton.class::cast).map(p -> p.reference.uuid()).orElse(null));
-			context.drawBorder(x, y, 128, 128, -1);
-		}
-	}
-
-	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		if (shouldShowMap()) {
 			int x = (width >> 1) - 64;
